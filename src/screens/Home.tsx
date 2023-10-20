@@ -6,6 +6,7 @@ import { Header } from '../components/Header';
 import { Alert, View } from 'react-native';
 import { Task } from '../components/Task';
 import { useMemo, useState } from 'react';
+import useTask from '../hooks/useTask';
 
 interface Task {
   id: string;
@@ -51,62 +52,23 @@ const StyledFlatList = styled.FlatList`
 `;
 
 export default function Home() {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [taskTitle, setTaskTitle] = useState('');
+  const {
+    tasks,
+    taskTitle,
+    setTaskTitle,
+    handleAddTask,
+    handleToggleTaskFinished,
+    handleRemoveTask
+  } = useTask();
 
-  const finishedTasksAmount = useMemo(() => tasks.filter((task) => task.finished).length, [tasks]);
-  const remainingTasksAmount = useMemo(() => tasks.length - finishedTasksAmount, [tasks]);
-
-  function handleAddTask(taskTitle: string) {
-    if (taskTitle.trim() === '')
-      return Alert.alert(
-        'Opa!',
-        'Você precisa digitar um título para a tarefa'
-      );
-
-    const newTask = {
-      id: String(new Date().getTime()),
-      title: taskTitle,
-      finished: false
-    };
-
-    setTasks([newTask, ...tasks]);
-    setTaskTitle('');
-  }
-
-  function handleToggleTaskFinished(taskId: string) {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === taskId) {
-        return {
-          ...task,
-          finished: !task.finished
-        };
-      }
-
-      return task;
-    });
-
-    setTasks(updatedTasks);
-  }
-
-  function handleRemoveTask(taskId: string) {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-
-    return Alert.alert(
-      'Remover item',
-      'Tem certeza que você deseja remover este item?',
-      [
-        {
-          text: 'Não',
-          style: 'cancel'
-        },
-        {
-          text: 'Sim',
-          onPress: () => setTasks(updatedTasks)
-        }
-      ]
-    );
-  }
+  const finishedTasksAmount = useMemo(
+    () => tasks.filter((task) => task.finished).length,
+    [tasks]
+  );
+  const remainingTasksAmount = useMemo(
+    () => tasks.length - finishedTasksAmount,
+    [tasks]
+  );
 
   return (
     <Container>

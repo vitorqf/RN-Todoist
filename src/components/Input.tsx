@@ -6,11 +6,11 @@ import theme from "../styles/theme";
 interface IInputProps extends TextInputProps { 
 }
 
-const StyledInput = styled(TextInput).attrs(({ theme }) => {
+const StyledInput = styled.TextInput).attrs(({ theme }) => {
     return {
         placeholderTextColor: theme.colors.neutral.gray[300]
     }
-})`
+}`
     flex: 1;
     height: 52px;
     align-items: center;

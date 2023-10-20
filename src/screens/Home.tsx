@@ -1,31 +1,30 @@
 import { Text, TextProps, View } from "react-native";
 import { Input } from "../components/Input";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import Logo from "../assets/Logo.svg"
 import { Button } from "../components/Button";
 
 type Variants = 'blue' | 'purple'
 
-
-const Container = styled(View)`
+const Container = styled.View`
     flex: 1;
 `
 
-const BlackBackground = styled(View)`
+const BlackBackground = styled.View`
     flex: 2;
     justify-content: center;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.neutral.gray[700]};
 `
 
-const GrayBackground = styled(View)`
+const GrayBackground = styled.View`
     flex: 7;
     background-color: ${({ theme }) => theme.colors.neutral.gray[600]};
     padding: 0 24px;
     align-items: center;
 `
 
-const Form = styled(View)`
+const Form = styled.View`
    position: absolute;
    max-width: 100%;
    top: -28px;
@@ -34,27 +33,27 @@ const Form = styled(View)`
    gap: 4px;
 `
 
-const List = styled(View)`
+const List = styled.View`
     width: 100%;
     padding: 48px 0 16px;
     border-bottom-width: 1px; 
     border-color: ${({ theme }) => theme.colors.neutral.gray[400]};
 `
 
-const Header = styled(View)`
+const Header = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 `
 
-const HeaderTextContainer = styled(View)`
+const HeaderTextContainer = styled.View`
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
 `;
 
-const CountBadge = styled(View)`
+const CountBadge = styled.View`
     ${({ theme }) => theme.font.sizes.sm};
     color: ${({ theme }) => theme.colors.neutral.gray[100]};
     background-color: ${({ theme }) => theme.colors.neutral.gray[400]};
@@ -65,7 +64,7 @@ const CountBadge = styled(View)`
     justify-content: center;
 `;
 
-const HeaderText = styled(Text)<{ variant: Variants }>`
+const HeaderText = styled.Text<{variant: Variants}>`
     ${({ theme }) => theme.font.sizes.md};
     color: ${({ variant, theme }) => theme.colors.brand[variant]};
     font-weight: bold;

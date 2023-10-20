@@ -1,5 +1,5 @@
 import { TouchableOpacity } from "react-native"
-import styled from "styled-components"
+import styled from "styled-components/native"
 import Plus from "../assets/plus.svg"
 import Trash from "../assets/trash.svg"
 
@@ -11,7 +11,7 @@ interface IButtonProps {
 }
 
 
-const DefaultButton = styled(TouchableOpacity)`
+const DefaultButton = styled.TouchableOpacity`
     height: 52px;
     width: 52px;
 

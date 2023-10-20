@@ -2,7 +2,7 @@ import { Input } from "../components/Input";
 import styled from "styled-components/native";
 import Logo from "../assets/Logo.svg"
 import { Button } from "../components/Button";
-import { Header } from "components/Header";
+import { Header } from "../components/Header";
 
 
 const Container = styled.View`
@@ -48,7 +48,7 @@ export default function Home() {
             <GrayBackground>
                 <Form>
                     <Input placeholder="Adicione uma nova tarefa" />
-                    <Button />
+                    <Button variant="delete" />
                 </Form>
 
                 <List>

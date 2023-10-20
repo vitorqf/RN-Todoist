@@ -11,7 +11,7 @@ const StyledInput = styled(TextInput).attrs(({ theme }) => {
         placeholderTextColor: theme.colors.neutral.gray[300]
     }
 })`
-    width: 100%;
+    flex: 1;
     height: 52px;
     align-items: center;
 

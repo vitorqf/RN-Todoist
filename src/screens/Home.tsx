@@ -1,7 +1,8 @@
-import { View, Text, TextInput } from "react-native";
+import { View } from "react-native";
 import { Input } from "../components/Input";
 import styled from "styled-components";
 import Logo from "../assets/Logo.svg"
+import { Button } from "../components/Button";
 
 const Container = styled(View)`
     flex: 1;
@@ -22,8 +23,11 @@ const GrayBackground = styled(View)`
 const Form = styled(View)`
    position: absolute;
    padding: 0 24px;
-   width: 100%;
+   max-width: 100%;
    top: -28px;
+
+   flex-direction: row;
+   gap: 4px;
 `
 
 export default function Home() {
@@ -35,6 +39,7 @@ export default function Home() {
             <GrayBackground>
                 <Form>
                     <Input placeholder="Adicione uma tarefa" />
+                    <Button />
                 </Form>
             </GrayBackground>
         </Container>

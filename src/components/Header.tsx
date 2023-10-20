@@ -3,6 +3,11 @@ import { Text } from "react-native";
 
 type Variants = 'blue' | 'purple'
 
+interface IHeaderProps {
+    remainingTasksAmount: number
+    finishedTasksAmount: number
+}
+
 const Container = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -34,20 +39,20 @@ const HeaderText = styled.Text<{variant: Variants}>`
 
 `;
 
-export function Header() {
+export function Header({ remainingTasksAmount, finishedTasksAmount }: IHeaderProps) {
     return (
         <Container>
             <HeaderTextContainer>
                 <HeaderText variant="blue">Criadas</HeaderText>
                 <CountBadge>
-                    <Text style={{ color: '#fff'}}>0</Text>
+                    <Text style={{ color: '#fff'}}>{remainingTasksAmount}</Text>
                 </CountBadge>
             </HeaderTextContainer>
 
             <HeaderTextContainer>
                 <HeaderText variant="purple">Concluídas</HeaderText>
                 <CountBadge>
-                    <Text style={{ color: '#fff'}}>0</Text>
+                    <Text style={{ color: '#fff'}}>{finishedTasksAmount}</Text>
                 </CountBadge>
             </HeaderTextContainer>
         </Container>

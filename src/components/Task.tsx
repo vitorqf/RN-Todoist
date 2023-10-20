@@ -1,7 +1,7 @@
-import styled from 'styled-components/native';
-import { Button } from './Button';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import styled from 'styled-components/native';
 import theme from '../styles/theme';
+import { Button } from './Button';
 
 interface ITaskProps {
   title: string;

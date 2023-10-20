@@ -1,11 +1,11 @@
-import { Input } from '../components/Input';
+import { useMemo } from 'react';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 import Logo from '../assets/Logo.svg';
 import { Button } from '../components/Button';
 import { Header } from '../components/Header';
-import { Alert, View } from 'react-native';
+import { Input } from '../components/Input';
 import { Task } from '../components/Task';
-import { useMemo, useState } from 'react';
 import useTask from '../hooks/useTask';
 
 interface Task {

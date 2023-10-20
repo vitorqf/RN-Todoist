@@ -24,6 +24,8 @@
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.14",
     "@types/styled-components-react-native": "^5.2.4",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.3",
     "react-native-svg-transformer": "^1.1.0",
     "typescript": "^5.1.3"
   },

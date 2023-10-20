@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { TextInput, TextInputProps } from 'react-native';
+import { TextInputProps } from 'react-native';
 import styled from 'styled-components/native';
 import theme from '../styles/theme';
 

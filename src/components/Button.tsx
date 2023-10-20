@@ -1,4 +1,4 @@
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacityProps } from 'react-native';
 import styled from 'styled-components/native';
 import Plus from '../assets/plus.svg';
 import Trash from '../assets/trash.svg';

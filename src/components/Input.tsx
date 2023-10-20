@@ -42,11 +42,16 @@ export function Input({ ...others }: IInputProps) {
     setInputBordercolor(COLORS.focused.borderColor);
   }
 
+  function handleBlur() {
+    setInputBordercolor(COLORS.unfocused.borderColor);
+  }
+
   return (
     <Fragment>
       <StyledInput
         {...others}
         onFocus={handleFocus}
+        onBlur={handleBlur}
         style={{
           borderColor: inputBorderColor
         }}

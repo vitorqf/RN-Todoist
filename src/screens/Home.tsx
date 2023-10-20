@@ -5,7 +5,7 @@ import { Button } from '../components/Button';
 import { Header } from '../components/Header';
 import { Alert, View } from 'react-native';
 import { Task } from '../components/Task';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 interface Task {
   id: string;
@@ -54,8 +54,8 @@ export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [taskTitle, setTaskTitle] = useState('');
 
-  const finishedTasksAmount = tasks.filter((task) => task.finished).length;
-  const remainingTasksAmount = tasks.length - finishedTasksAmount;
+  const finishedTasksAmount = useMemo(() => tasks.filter((task) => task.finished).length, [tasks]);
+  const remainingTasksAmount = useMemo(() => tasks.length - finishedTasksAmount, [tasks]);
 
   function handleAddTask(taskTitle: string) {
     if (taskTitle.trim() === '')

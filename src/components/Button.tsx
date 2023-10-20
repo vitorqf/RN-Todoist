@@ -1,11 +1,11 @@
-import { TouchableOpacity } from "react-native"
+import { TouchableOpacity, TouchableOpacityProps } from "react-native"
 import styled from "styled-components/native"
 import Plus from "../assets/plus.svg"
 import Trash from "../assets/trash.svg"
 
 type Variant = 'create' | 'delete'
 
-interface IButtonProps { 
+interface IButtonProps extends TouchableOpacityProps { 
     variant?: Variant
     icon?: React.ReactNode
 }
@@ -39,11 +39,11 @@ const ICONS = {
     delete: <Trash />
 }
 
-export function Button({ variant = "create" }: IButtonProps) {
+export function Button({ variant = "create", ...others }: IButtonProps) {
     const icon = ICONS[variant]
     const Button = BUTTONS[variant]
 
     return (
-        <Button>{icon}</Button>
+        <Button {...others}>{icon}</Button>
     )
 }

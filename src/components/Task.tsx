@@ -6,9 +6,11 @@ import theme from "../styles/theme";
 interface ITaskProps {
     title: string
     finished: boolean
+    handleToggleTaskFinished?: () => void
+    handleRemoveTask?: () => void
 }
 
-const Container = styled.TouchableOpacity`
+const Container = styled.View`
     padding: 12px;
     flex-direction: row;
     align-items: center;
@@ -29,16 +31,18 @@ flex: 1;
     text-decoration: ${({ finished }) => finished ? 'line-through' : 'none'};
 `
 
-export function Task({ title, finished }: ITaskProps) {
+export function Task({ title, finished, handleToggleTaskFinished, handleRemoveTask }: ITaskProps) {
     return (
         <Container>
             <BouncyCheckbox 
                 size={24}
-                fillColor={theme.colors.brand.purple}
+                fillColor={finished ? theme.colors.brand.purple : theme.colors.brand.blue_dark}
                 innerIconStyle={{ borderWidth: 2 }}
+                isChecked={finished}
+                onPress={handleToggleTaskFinished}
             />
             <Title finished={finished}>{title}</Title>
-            <Button variant="delete" />
+            <Button variant="delete" onPress={handleRemoveTask} />
         </Container>
     )
 }

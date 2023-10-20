@@ -12,6 +12,9 @@ const Container = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    border-bottom-width: 1px; 
+    border-color: ${({ theme }) => theme.colors.neutral.gray[400]};
+    padding-bottom: 24px;
 `
 
 const HeaderTextContainer = styled.View`

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import styled from 'styled-components/native';
 import Logo from '../assets/Logo.svg';
 import { Button } from '../components/Button';
+import { EmptyList } from '../components/EmptyList';
 import { Header } from '../components/Header';
 import { Input } from '../components/Input';
 import { Task } from '../components/Task';
@@ -105,6 +106,7 @@ export default function Home() {
               />
             )}
             ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
+            ListEmptyComponent={EmptyList}
           />
         </List>
       </GrayBackground>

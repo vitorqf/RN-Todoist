@@ -26,9 +26,22 @@ const Container = styled.View`
 
 const Title = styled.Text<{ finished: boolean }>`
   flex: 1;
+
   ${({ theme }) => theme.font.sizes.md};
-  color: ${({ theme }) => theme.colors.neutral.gray[100]};
-  text-decoration: ${({ finished }) => (finished ? 'line-through' : 'none')};
+
+  ${({ theme, finished }) => {
+    if (finished) {
+      return `
+        text-decoration: line-through;
+        color: ${theme.colors.neutral.gray[300]};
+      `;
+    }
+
+    return `
+      text-decoration: none;
+      color: ${theme.colors.neutral.gray[100]};
+    `;
+  }};
 `;
 
 export function Task({

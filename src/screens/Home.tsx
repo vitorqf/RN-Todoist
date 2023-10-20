@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import Logo from "../assets/Logo.svg"
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
-import { Alert, FlatList, View } from "react-native";
+import { Alert, View } from "react-native";
 import { Task } from "../components/Task";
 import { useState } from "react";
 
@@ -61,6 +61,8 @@ export default function Home() {
 
 
     function handleAddTask(taskTitle: string) {
+        if (taskTitle.trim() === '') return Alert.alert('Opa!', 'Você precisa digitar um título para a tarefa')
+
         const newTask = {
             id: String(new Date().getTime()),
             title: taskTitle,

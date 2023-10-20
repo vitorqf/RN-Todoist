@@ -21,7 +21,7 @@ const StyledInput = styled(TextInput).attrs(({ theme }) => {
     
     ${({ theme }) => theme.font.sizes.md};
 
-    background-color: ${({ theme }) => theme.colors.neutral.gray[700]};
+    background-color: ${({ theme }) => theme.colors.neutral.gray[500]};
     color: ${({ theme }) => theme.colors.neutral.gray[100]};
 `;
 

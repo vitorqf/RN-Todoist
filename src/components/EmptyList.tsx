@@ -14,11 +14,13 @@ export const Title = styled.Text`
   ${({ theme }) => theme.font.sizes.md};
   color: ${({ theme }) => theme.colors.neutral.gray[300]};
   font-weight: bold;
+  text-align: center;
 `;
 
 export const Subtitle = styled.Text`
   ${({ theme }) => theme.font.sizes.md};
   color: ${({ theme }) => theme.colors.neutral.gray[300]};
+  text-align: center;
 `;
 
 export function EmptyList() {

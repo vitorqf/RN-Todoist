@@ -1,13 +1,39 @@
 // taskHooks.js (create a new file)
 
-import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 
+interface Task {
+  id: string;
+  title: string;
+  finished: boolean;
+}
+
 function useTask() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [taskTitle, setTaskTitle] = useState('');
 
-  function handleAddTask(taskTitle) {
+  async function storeTasks(tasks: Task[]) {
+    try {
+      await AsyncStorage.setItem('@tasks', JSON.stringify(tasks));
+    } catch (e) {
+      Alert.alert('Opa!', 'Não foi possível salvar as tarefas');
+    }
+  }
+
+  async function loadTasks() {
+    try {
+      const tasks = await AsyncStorage.getItem('@tasks');
+      if (tasks) {
+        setTasks(JSON.parse(tasks));
+      }
+    } catch (e) {
+      Alert.alert('Opa!', 'Não foi possível carregar as tarefas');
+    }
+  }
+
+  function handleAddTask(taskTitle: string) {
     if (taskTitle.trim() === '') {
       Alert.alert('Opa!', 'Você precisa digitar um título para a tarefa');
       return;
@@ -23,7 +49,7 @@ function useTask() {
     setTaskTitle('');
   }
 
-  function handleToggleTaskFinished(taskId) {
+  function handleToggleTaskFinished(taskId: string) {
     const updatedTasks = tasks.map((task) => {
       if (task.id === taskId) {
         return {
@@ -37,7 +63,7 @@ function useTask() {
     setTasks(updatedTasks);
   }
 
-  function handleRemoveTask(taskId) {
+  function handleRemoveTask(taskId: string) {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
 
     Alert.alert(
@@ -55,6 +81,14 @@ function useTask() {
       ]
     );
   }
+
+  useEffect(() => {
+    loadTasks();
+  }, []);
+
+  useEffect(() => {
+    storeTasks(tasks);
+  }, [tasks]);
 
   return {
     tasks,

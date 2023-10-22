@@ -4,14 +4,17 @@ import {
   Inter_700Bold,
   useFonts
 } from '@expo-google-fonts/inter';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useCallback } from 'react';
-import { View } from 'react-native';
+import React, { useCallback } from 'react';
 import { ThemeProvider } from 'styled-components/native';
+import Details from './src/screens/Details';
 import Home from './src/screens/Home';
 import theme from './src/styles/theme';
 
+const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -31,12 +34,25 @@ export default function App() {
     return null;
   }
 
+  onLayoutRootView();
+
   return (
     <ThemeProvider theme={theme}>
-      <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-        <StatusBar translucent style="light" />
-        <Home />
-      </View>
+      <NavigationContainer>
+        <StatusBar style="light" translucent />
+        <Stack.Navigator initialRouteName="Home" screenOptions={{animation: 'slide_from_right', navigationBarColor: "#000"}}>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Details"
+            component={Details}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </ThemeProvider>
   );
 }

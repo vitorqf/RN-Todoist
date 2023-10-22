@@ -1,16 +1,23 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import styled from 'styled-components/native';
+import { ITask } from '../hooks/useTask';
+import { RootStackParamList } from '../screens/RootStackPrams';
 import theme from '../styles/theme';
 import { Button } from './Button';
 
-interface ITaskProps {
-  title: string;
-  finished: boolean;
+type detailsScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Details'
+>;
+
+interface ITaskProps extends ITask {
   handleToggleTaskFinished?: () => void;
   handleRemoveTask?: () => void;
 }
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   padding: 12px;
   flex-direction: row;
   align-items: center;
@@ -45,13 +52,28 @@ const Title = styled.Text<{ finished: boolean }>`
 `;
 
 export function Task({
+  id,
   title,
   finished,
+  created_at,
   handleToggleTaskFinished,
   handleRemoveTask
 }: ITaskProps) {
+  const navigation = useNavigation<detailsScreenProp>();
+
   return (
-    <Container>
+    <Container
+      onPress={() =>
+        navigation.navigate('Details', {
+          task: {
+            id,
+            title,
+            finished,
+            created_at
+          }
+        })
+      }
+    >
       <BouncyCheckbox
         size={24}
         fillColor={

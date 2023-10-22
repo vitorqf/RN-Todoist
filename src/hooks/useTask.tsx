@@ -4,17 +4,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 
-interface Task {
+export interface ITask {
   id: string;
   title: string;
   finished: boolean;
+  created_at: string;
 }
 
 function useTask() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
   const [taskTitle, setTaskTitle] = useState('');
 
-  async function storeTasks(tasks: Task[]) {
+  async function storeTasks(tasks: ITask[]) {
     try {
       await AsyncStorage.setItem('@tasks', JSON.stringify(tasks));
     } catch (e) {
@@ -42,7 +43,8 @@ function useTask() {
     const newTask = {
       id: String(new Date().getTime()),
       title: taskTitle,
-      finished: false
+      finished: false,
+      created_at: new Date().toLocaleString('pt-BR')
     };
 
     setTasks([newTask, ...tasks]);

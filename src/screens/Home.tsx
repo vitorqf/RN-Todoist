@@ -1,29 +1,16 @@
 import { useMemo } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
-import Logo from '../assets/Logo.svg';
+import { BlackBackground } from '../components/BlackBackground';
 import { Button } from '../components/Button';
 import { EmptyList } from '../components/EmptyList';
 import { Header } from '../components/Header';
 import { Input } from '../components/Input';
 import { Task } from '../components/Task';
-import useTask from '../hooks/useTask';
-
-interface Task {
-  id: string;
-  title: string;
-  finished: boolean;
-}
+import useTask, { ITask } from '../hooks/useTask';
 
 const Container = styled.View`
   flex: 1;
-`;
-
-const BlackBackground = styled.View`
-  flex: 2;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.neutral.gray[700]};
 `;
 
 const GrayBackground = styled.View`
@@ -73,9 +60,7 @@ export default function Home() {
 
   return (
     <Container>
-      <BlackBackground>
-        <Logo />
-      </BlackBackground>
+      <BlackBackground />
 
       <GrayBackground>
         <Form>
@@ -94,11 +79,13 @@ export default function Home() {
           />
           <StyledFlatList
             data={tasks}
-            keyExtractor={(item: Task) => item.id}
-            renderItem={({ item }: { item: Task }) => (
+            keyExtractor={(item: ITask) => item.id}
+            renderItem={({ item }: { item: ITask }) => (
               <Task
+                id={item.id}
                 title={item.title}
                 finished={item.finished}
+                created_at={item.created_at}
                 handleRemoveTask={() => handleRemoveTask(item.id)}
                 handleToggleTaskFinished={() =>
                   handleToggleTaskFinished(item.id)
@@ -107,6 +94,7 @@ export default function Home() {
             )}
             ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
             ListEmptyComponent={EmptyList}
+            contentContainerStyle={{ paddingBottom: 80 }}
           />
         </List>
       </GrayBackground>
